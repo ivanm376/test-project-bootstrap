@@ -1,0 +1,10 @@
+FROM ubuntu:16.04
+
+RUN useradd -m usernew
+RUN apt update
+RUN apt install -y curl
+RUN curl -sL https://deb.nodesource.com/setup_lts.x | bash -
+RUN apt update
+RUN apt install -y nodejs
+CMD tail -f /project1/README.md # keep container running
+

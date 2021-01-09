@@ -1,0 +1,23 @@
+services:
+  webapp:
+    image: project1_webapp_image
+    container_name: project1_webapp_container
+    build:
+      context: .
+      dockerfile: Dockerfile_webapp
+    ports:
+      - '3030:3000'
+      - '9229:9229'
+    volumes:
+      - /project1:/project1
+    user: usernew
+    working_dir: /project1
+    links:
+      - mongodb
+
+  mongodb:
+    image: project1_mongodb_image
+    container_name: project1_mongodb_container
+    build:
+      context: .
+      dockerfile: Dockerfile_mongodb

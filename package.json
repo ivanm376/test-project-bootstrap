@@ -1,0 +1,19 @@
+{
+  "name": "project1",
+  "version": "1.0.0",
+  "description": "Project 1",
+  "main": "index.js",
+  "dependencies": {
+    "mongoose": "^5.11.10",
+    "webpack": "^5.12.2",
+    "webpack-cli": "^4.3.1",
+    "ytdl-core": "^4.4.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
