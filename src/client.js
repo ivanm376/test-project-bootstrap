@@ -1,12 +1,15 @@
-import printMe from './print.js';
+import React from 'react'
+import { render } from 'react-dom'
+import { createStore } from 'redux'
+import { Provider } from 'react-redux'
+import App from './components/App'
+import rootReducer from './reducers'
 
-const component = () => {
-  const element = document.createElement('div');
+const store = createStore(rootReducer)
 
-  element.innerHTML = '12345';
-  printMe();
-
-  return element;
-};
-
-document.body.appendChild(component());
+render(
+  <Provider store={store}>
+    <App />
+  </Provider>,
+  document.getElementById('root')
+)

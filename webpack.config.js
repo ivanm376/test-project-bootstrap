@@ -1,10 +1,10 @@
-const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const InlineChunkHtmlPlugin = require('react-dev-utils/InlineChunkHtmlPlugin');
+const path = require('path')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const InlineChunkHtmlPlugin = require('react-dev-utils/InlineChunkHtmlPlugin')
 
-console.log(`--- Webpack mode:${process.env.NODE_ENV} ---`);
+console.log(`--- Webpack mode:${process.env.NODE_ENV} ---`)
 
-const mode = process.env.NODE_ENV;
+const mode = process.env.NODE_ENV
 const config = {
   mode,
   entry: ['./src/style.sass', './src/client.js'],
@@ -24,10 +24,10 @@ const config = {
       },
     ],
   },
-};
-
-if (mode === 'production') {
-  config.plugins.push(new InlineChunkHtmlPlugin(HtmlWebpackPlugin, [/client-bundle/]));
 }
 
-module.exports = config;
+if (mode === 'production') {
+  config.plugins.push(new InlineChunkHtmlPlugin(HtmlWebpackPlugin, [/client-bundle/]))
+}
+
+module.exports = config

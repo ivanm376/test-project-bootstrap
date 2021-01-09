@@ -2,8 +2,8 @@
 
 - Docker (two separate containers with MongoDB)
 - Webpack
-- express
-- react/redux
+- Express
+- React/Redux
 
 ### DOCKER-COMPOSE (\*under root user):
 
