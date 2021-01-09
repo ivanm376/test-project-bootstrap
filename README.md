@@ -1,19 +1,19 @@
-##Test Project Bootstrap
+## Test Project Bootstrap
 
 - Docker (two separate containers with MongoDB)
 - Webpack
 - express
 - react/redux
 
-###DOCKER-COMPOSE (\*under root user):
+### DOCKER-COMPOSE (\*under root user):
 
 > docker-compose up -d
 > docker-compose stop
 
-###LINUX TIP
+### LINUX TIP
 Check you have enough watchers - https://webpack.js.org/configuration/watch/#not-enough-watchers.
 
-###DEVELOPMENT MODE
+### DEVELOPMENT MODE
 
 Open two terminals with
 
@@ -24,15 +24,15 @@ Run, in each, separately server and webpack
 > npm run server
 > npm run webpack
 
-####\*To login as root:
+##### \*To login as root:
 
 > docker exec -u root -it project1_webapp_container bash
 
-###BUILD PRODUCTION BUNDLE
+### BUILD PRODUCTION BUNDLE
 
 > npm run build
 
-###DEPLOYMENT TO PRODUCTION
+### DEPLOYMENT TO PRODUCTION
 
 To skip devDependencies installation:
 
