@@ -1,4 +1,3 @@
-import './style.sass';
 import printMe from './print.js';
 
 const component = () => {

@@ -1,6 +1,6 @@
 const path = require('path');
-// const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const InlineChunkHtmlPlugin = require('react-dev-utils/InlineChunkHtmlPlugin');
 
 console.log(`--- Webpack mode:${process.env.NODE_ENV} ---`);
 
@@ -8,17 +8,19 @@ const mode = process.env.NODE_ENV;
 const config = {
   mode,
   entry: './src/client.js',
-  plugins: [new HtmlWebpackPlugin({ title: 'Test Project', hash: true })],
-  // plugins: [new MiniCssExtractPlugin()],
+  output: { filename: 'client-bundle.js' },
+  plugins: [
+    new HtmlWebpackPlugin({ template: './src/index-template.html' }),
+    new InlineChunkHtmlPlugin(HtmlWebpackPlugin, [/client-bundle/]),
+  ],
   module: {
     rules: [
       {
-        test: /\.sass$/i,
+        test: /\.css$/i,
         use: [
-          // MiniCssExtractPlugin.loader,
           'style-loader', // Creates `style` nodes from JS strings
           'css-loader', // Translates CSS into CommonJS
-          'sass-loader', // Compiles Sass to CSS
+          // 'sass-loader', // Compiles Sass to CSS
         ],
       },
     ],
