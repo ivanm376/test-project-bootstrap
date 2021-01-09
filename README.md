@@ -11,13 +11,14 @@
 > docker-compose stop
 
 ### LINUX TIP
+
 Check you have enough watchers - https://webpack.js.org/configuration/watch/#not-enough-watchers.
 
 ### DEVELOPMENT MODE
 
 Open two terminals with
 
-> docker exec -u root -it project1_webapp_container bash
+> docker exec -it project1_webapp_container bash
 
 Run, in each, separately server and webpack
 
