@@ -1,3 +1,10 @@
+##Test Project Bootstrap
+
+- Docker (two separate containers with MongoDB)
+- Webpack
+- express
+- react/redux
+
 ###DOCKER-COMPOSE (\*under root user):
 
 > docker-compose up -d
