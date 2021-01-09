@@ -7,7 +7,7 @@
 
 ### DOCKER-COMPOSE (\*under root user):
 
-> docker-compose up -d
+> docker-compose up -d  
 > docker-compose stop
 
 ### LINUX TIP
@@ -21,7 +21,7 @@ Open two terminals with
 
 Run, in each, separately server and webpack
 
-> npm run server
+> npm run server  
 > npm run webpack
 
 ##### \*To login as root:
