@@ -4,6 +4,8 @@
 - Webpack
 - Express
 - React/Redux
+- Tuned with [Lighthouse](https://developers.google.com/web/tools/lighthouse)
+- PWA (//TODO)
 
 ### DOCKER-COMPOSE (\*under root user):
 

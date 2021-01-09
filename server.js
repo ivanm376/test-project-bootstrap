@@ -1,10 +1,11 @@
 const express = require('express')
-const fs = require('fs')
+const compression = require('compression')
 const mongoose = require('mongoose')
 mongoose.connect('mongodb://mongodb:27017/testdb', { useNewUrlParser: true, useUnifiedTopology: true })
 const Cat = mongoose.model('Cat', new mongoose.Schema({ name: String }))
 const app = express()
 
+app.use(compression())
 app.get('/', (req, res) => res.sendFile(__dirname + '/dist/index.html'))
 app.get('/kitties', (req, res) => {
   console.log('kitties', req.url)

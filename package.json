@@ -4,6 +4,7 @@
   "description": "Project 1",
   "main": "index.js",
   "dependencies": {
+    "compression": "^1.7.4",
     "express": "^4.17.1",
     "mongoose": "^5.11.10",
     "ytdl-core": "^4.4.1"
