@@ -3,6 +3,7 @@
 - Docker (two separate containers with MongoDB)
 - Webpack
 - Express
+- Winston
 - React/Redux
 - Tuned with [Lighthouse](https://developers.google.com/web/tools/lighthouse)
 - PWA (//TODO)
@@ -44,3 +45,7 @@ To skip devDependencies installation:
 To start server in production mode (\*\*\*TODO pm2\*\*\*):
 
 > npm run production
+
+### Links
+
+https://expressjs.com/en/advanced/best-practice-performance.html

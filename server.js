@@ -1,3 +1,35 @@
+const winston = require('winston')
+const logger = winston.createLogger({
+  format: winston.format.combine(
+    winston.format.timestamp(),
+    winston.format.json(),
+    winston.format.printf(data => {
+      // reorder attributes:
+      return JSON.stringify({ timestamp: data.timestamp, level: data.level, message: data.message })
+    })
+  ),
+  transports: [
+    new winston.transports.File({ filename: 'error.log', level: 'error' }),
+    new winston.transports.File({ filename: 'combined.log' }),
+  ],
+})
+if (process.env.NODE_ENV === 'development') {
+  const colorizer = winston.format.colorize()
+  logger.add(
+    new winston.transports.Console({
+      format: winston.format.combine(
+        winston.format.timestamp({ format: 'YYYY-MM-DD HH:mm:ss' }),
+        winston.format.printf(data => {
+          const { timestamp, level, message } = data
+          return colorizer.colorize(level, `${timestamp} ${level.toUpperCase()}: ${message}`)
+        })
+      ),
+    })
+  )
+}
+// logger.error('Test error message')
+// logger.warn('Test warn message')
+
 const express = require('express')
 const compression = require('compression')
 const mongoose = require('mongoose')
@@ -8,7 +40,7 @@ const app = express()
 app.use(compression())
 app.get('/', (req, res) => res.sendFile(__dirname + '/dist/index.html'))
 app.get('/kitties', (req, res) => {
-  console.log('kitties', req.url)
+  logger.info('kitties', req.url)
   try {
     // if (req.url.includes('%')) {
     //   debugger;
@@ -25,7 +57,7 @@ app.get('/kitties', (req, res) => {
 
   const random = Math.random()
   const kitty = new Cat({ name: `Zildjian${random}` })
-  // kitty.save().then(() => console.log(`meow${random}`));
+  // kitty.save().then(() => logger.info(`meow${random}`));
 
   mongoose.model('Cat').find({ _id: '5ff90fbc79f6ab0038331db9' }, (err, data) => {
     res.end(`---\n${JSON.stringify({ err: err && err.toString(), data })}`)
@@ -36,5 +68,5 @@ app.use(express.static('dist'))
 app.use(express.static('public'))
 
 app.listen(process.env.PORT, () => {
-  console.log(`\n--- APP listening ENV:${process.env.NODE_ENV} PORT:${process.env.PORT} ---\n`)
+  logger.info(`APP listening ENV:${process.env.NODE_ENV} PORT:${process.env.PORT}`)
 })
