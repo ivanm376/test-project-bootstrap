@@ -1,12 +1,12 @@
 ## Test Project Bootstrap
 
-- Docker (two separate containers with MongoDB)
+- Docker (three separate containers with Nginx ///TODO///, App and MongoDB)
 - Webpack
 - Express
 - Winston
 - React/Redux
 - Tuned with [Lighthouse](https://developers.google.com/web/tools/lighthouse)
-- PWA (//TODO)
+- PWA
 
 ### DOCKER-COMPOSE (\*under root user):
 
@@ -50,3 +50,4 @@ To start server in production mode (\*\*\*TODO pm2\*\*\*):
 
 - https://expressjs.com/en/advanced/best-practice-performance.html
 - https://reactjs.org/docs/code-splitting.html
+- https://reactjs.org/docs/optimizing-performance.html

@@ -17,8 +17,8 @@ const AddTodo = ({ dispatch }) => {
           input.value = ''
         }}
       >
-        <label for="todoName">Insert Todo name:&nbsp;</label>
-        <input id="todoName" ref={node => (input = node)} />
+        <label htmlFor="todoNameInput">Insert Todo name:&nbsp;</label>
+        <input id="todoNameInput" ref={node => (input = node)} />
         <button type="submit">Add Todo</button>
       </form>
     </div>
