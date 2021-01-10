@@ -10,7 +10,7 @@ const config = {
   entry: ['./src/style.sass', './src/client.js'],
   output: { filename: 'client-bundle.js' },
   plugins: [new HtmlWebpackPlugin({ template: './src/index-template.html' })],
-  performance: { hints: false }, // disable size limit warnings
+  performance: { maxEntrypointSize: 512000, maxAssetSize: 512000 }, // disable size limit warnings
   module: {
     rules: [
       {
