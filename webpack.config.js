@@ -8,19 +8,13 @@ const mode = process.env.NODE_ENV
 const config = {
   mode,
   entry: ['./src/style.sass', './src/client.js'],
-  output: {
-    filename: 'client-bundle.js',
-  },
-  plugins: [
-    new HtmlWebpackPlugin({
-      template: './src/index-template.html',
-    }),
-  ],
+  output: { filename: 'client-bundle.js' },
+  plugins: [new HtmlWebpackPlugin({ template: './src/index-template.html' })],
   module: {
     rules: [
       {
         test: /\.sass$/i,
-        use: ['style-loader', 'css-loader', 'sass-loader'],
+        use: ['style-loader', 'css-loader?url=false', 'sass-loader'],
       },
       {
         test: /\.js$/,

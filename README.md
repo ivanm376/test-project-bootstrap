@@ -1,10 +1,11 @@
 ## Test Project Bootstrap
 
-- Docker (three separate containers with Nginx ///TODO///, App and MongoDB)
+- Docker (two separate containers App and MongoDB)
 - Webpack
 - Express
 - Winston
 - React/Redux
+- Bootstrap
 - Tuned with [Lighthouse](https://developers.google.com/web/tools/lighthouse)
 - PWA
 
