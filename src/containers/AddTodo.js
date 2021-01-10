@@ -17,18 +17,20 @@ const AddTodo = ({ dispatch }) => {
           input.value = ''
         }}
       >
-        <div class="row">
-          <label htmlFor="todoNameInput" class="form-label">
+        <div className="row">
+          <label htmlFor="todoNameInput" className="form-label">
             Insert Todo name
           </label>
         </div>
-        <div class="row">
-          <div class="col-sm-9">
-            <input id="todoNameInput" class="form-control" ref={node => (input = node)} />
+        <div className="row">
+          <div className="col-sm-12 col-md-9 mb-2">
+            <input id="todoNameInput" className="form-control" ref={node => (input = node)} />
           </div>
-          <button type="submit" class="btn btn-light col-sm-3">
-            Add Todo
-          </button>
+          <div className="col-sm-12 col-md-3 mb-2 d-grid">
+            <button type="submit" className="btn btn-success">
+              Add Todo
+            </button>
+          </div>
         </div>
       </form>
     </div>
