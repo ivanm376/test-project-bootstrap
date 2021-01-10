@@ -31,11 +31,11 @@ if (process.env.NODE_ENV === 'development') {
 // logger.warn('Test warn message')
 
 const express = require('express')
+const app = express()
 const compression = require('compression')
 const mongoose = require('mongoose')
 mongoose.connect('mongodb://mongodb:27017/testdb', { useNewUrlParser: true, useUnifiedTopology: true })
 const Cat = mongoose.model('Cat', new mongoose.Schema({ name: String }))
-const app = express()
 
 app.use(compression())
 app.get('/', (req, res) => res.sendFile(__dirname + '/dist/index.html'))

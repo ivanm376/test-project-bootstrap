@@ -49,3 +49,4 @@ To start server in production mode (\*\*\*TODO pm2\*\*\*):
 ### Links
 
 https://expressjs.com/en/advanced/best-practice-performance.html
+https://reactjs.org/docs/code-splitting.html

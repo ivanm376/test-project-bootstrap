@@ -28,7 +28,18 @@ const config = {
         use: {
           loader: 'babel-loader',
           options: {
-            presets: ['@babel/preset-react'],
+            presets: [
+              '@babel/preset-react',
+              [
+                '@babel/preset-env',
+                {
+                  // debug: true,
+                  // targets: 'defaults',
+                  // targets: 'chrome 85',
+                  targets: '> 0.25%, not dead',
+                },
+              ],
+            ],
           },
         },
       },
