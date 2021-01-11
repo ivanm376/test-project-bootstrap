@@ -7,8 +7,8 @@ import rootReducer from './reducers'
 
 const store = createStore(rootReducer)
 
-// render(
-hydrate(
+render(
+  // hydrate( // SSR
   <Provider store={store}>
     <App />
   </Provider>,
