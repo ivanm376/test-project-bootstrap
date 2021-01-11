@@ -38,7 +38,14 @@ mongoose.connect('mongodb://mongodb:27017/testdb', { useNewUrlParser: true, useU
 const Cat = mongoose.model('Cat', new mongoose.Schema({ name: String }))
 
 app.use(compression())
-app.get('/', (req, res) => res.sendFile(__dirname + '/dist/index.html'))
+
+require('@babel/register')({
+  presets: ['@babel/preset-react', '@babel/preset-env'],
+})
+const renderReact = require('./renderReact')
+renderReact(app)
+
+// app.get('/', (req, res) => res.sendFile(__dirname + '/dist/index.html'))
 app.get('/kitties', (req, res) => {
   logger.info('kitties', req.url)
   try {

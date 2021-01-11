@@ -5,6 +5,7 @@
 - Express
 - Winston
 - React/Redux
+- Sass
 - Bootstrap
 - Tuned with [Lighthouse](https://developers.google.com/web/tools/lighthouse)
 - PWA
