@@ -8,9 +8,9 @@
 - Tuned with [Lighthouse](https://developers.google.com/web/tools/lighthouse)
 - PWA
 - CSP (// TODO - CspHtmlWebpackPlugin)
+- Bootstrap
 - Sass
 - Winston
-- Bootstrap
 
 ### DOCKER-COMPOSE (\*under root user):
 
@@ -31,7 +31,7 @@ Install packages
 
 > npm install --also=dev
 
-Run, in each, separately server and webpack
+Run in each terminal, separately, server and webpack
 
 > npm run server-dev  
 > npm run webpack-watch
@@ -67,8 +67,3 @@ To start server in production mode (\*\*\*TODO pm2\*\*\*):
 - https://expressjs.com/en/advanced/best-practice-performance.html
 - https://reactjs.org/docs/code-splitting.html
 - https://reactjs.org/docs/optimizing-performance.html
-
-### Server-side rendering (non-available)
-
-> npm run server-ssr
-> npm run build-ssr
