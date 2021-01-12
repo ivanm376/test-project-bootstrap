@@ -6,41 +6,35 @@ import App from './src/components/App'
 import rootReducer from './src/reducers'
 import fs from 'fs'
 
-const store = createStore(rootReducer)
-const css = fs.readFileSync('./dist/main.css')
+let html = fs.readFileSync('./src/index-template.html').toString()
 
-const htmlStart = `
-  <!DOCTYPE html>
-  <html lang="en">
-    <head>
-      <meta charset="utf-8" />
-      <meta name="description" content="Test Project Bootstrap" />
-      <title>Test Project1</title>
-      <meta name="viewport" content="width=device-width, initial-scale=1" />
-      <meta name="theme-color" content="#317EFB" />
-      <link rel="manifest" href="/manifest.webmanifest" />
-      <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-      <noscript>You Javascript is disabled! Site is unreachable!</noscript>
-      ${process.env.USESSR ? '<script>window.USESSR=true</script>' : ''}
-      <style>${css}</style>
-    </head>
-    <body>
-      <div id="innerBody">
-        <div id="root">`
+// Make string '<!DOCTYPE html><html lang="en"><head><meta charset="utf-8" /><meta ...':
+html = html
   .split('\n')
   .map(i => i.trim())
-  .join('') // make string '<!DOCTYPE html><html lang="en"><head><meta charset="utf-8" /><meta ...'
+  .join('')
 
-const htmlEnd = `</div></div></body><script src="/client-bundle.js"></script></html>`
+// Insert window.USESSR and CSS:
+const css = fs.readFileSync('./dist/main.css').toString()
+html = html.replace(/<\/head>/, `<script>window.USESSR=true</script><style>${css}</style></head>`)
 
+// Insert prerendered App:
+const store = createStore(rootReducer)
 const appString = renderToString(
   <Provider store={store}>
     <App />
   </Provider>
 )
+html = html.replace(/<div id="root"><\/div>/, `<div id="root">${appString}</div>`)
+
+// Insert client-bundle.js:
+html = html.replace(/<\/html>/, `<script src="/client-bundle.js"></script></html>`)
 
 module.exports = function (app) {
   app.get('/', (req, res) => {
+    /* --renderToString-- */
+    return res.send(html)
+
     /* --renderToNodeStream-- */
     // const stream = renderToNodeStream(
     //   <Provider store={store}>
@@ -53,8 +47,5 @@ module.exports = function (app) {
     //   res.write(htmlEnd)
     //   res.end()
     // })
-
-    /* --renderToString-- */
-    res.send(`${htmlStart}${appString}${htmlEnd}`)
   })
 }
