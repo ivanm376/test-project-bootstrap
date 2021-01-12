@@ -1,5 +1,5 @@
 import React from 'react'
-import ReactDOMServer from 'react-dom/server'
+import { renderToString, renderToNodeStream } from 'react-dom/server'
 import { createStore } from 'redux'
 import { Provider } from 'react-redux'
 import App from './src/components/App'
@@ -7,30 +7,50 @@ import rootReducer from './src/reducers'
 
 const store = createStore(rootReducer)
 
-const templateFn = body => {
-  return `
-      <!DOCTYPE html>
-      <html>
-        <head>
-          <title>Test Project1 SSR</title>
-          <link rel="stylesheet" href="/assets/index.css" />
-        </head>
-        <body>
-          <div id="root">${body}</div>
-        </body>
-        <script src="/client-bundle.js"></script>
-      </html>`
-}
+const htmlStart = `
+  <!DOCTYPE html>
+  <html lang="en">
+    <head>
+      <meta charset="utf-8" />
+      <meta name="description" content="Test Project Bootstrap" />
+      <title>Test Project1</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
+      <meta name="theme-color" content="#317EFB" />
+      <link rel="manifest" href="/manifest.webmanifest" />
+      <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+      <noscript>You Javascript is disabled! Site is unreachable!</noscript>
+    </head>
+    <body>
+      <div id="innerBody">
+        <div id="root">`
+  .split('\n')
+  .map(i => i.trim())
+  .join('') // make string '<!DOCTYPE html><html lang="en"><head><meta charset="utf-8" /><meta ...'
+
+const htmlEnd = `</div></div></body><script src="/client-bundle.js"></script></html>`
+
+const appString = renderToString(
+  <Provider store={store}>
+    <App />
+  </Provider>
+)
 
 module.exports = function (app) {
   app.get('/', (req, res) => {
-    const body = ReactDOMServer.renderToString(
-      <Provider store={store}>
-        <App />
-      </Provider>
-    )
-    // const body = 'test'
-    const template = templateFn(body)
-    res.send(template)
+    /* --renderToNodeStream-- */
+    // const stream = renderToNodeStream(
+    //   <Provider store={store}>
+    //     <App />
+    //   </Provider>
+    // )
+    // res.write(htmlStart)
+    // stream.pipe(res, { end: false }) // pipe rendered App
+    // stream.on('end', () => {
+    //   res.write(htmlEnd)
+    //   res.end()
+    // })
+
+    /* --renderToString-- */
+    res.send(`${htmlStart}${appString}${htmlEnd}`)
   })
 }
