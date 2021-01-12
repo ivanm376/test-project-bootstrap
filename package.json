@@ -34,6 +34,7 @@
     "server-dev": "       NODE_ENV=development             node --inspect=0.0.0.0     server.js",
     "server-brk": "       NODE_ENV=development             node --inspect-brk=0.0.0.0 server.js",
     "server-ssr": "       NODE_ENV=development USESSR=true node --inspect=0.0.0.0     server.js",
+    "server-ssr-brk": "   NODE_ENV=development USESSR=true node --inspect-brk=0.0.0.0 server.js",
     "server-production": "NODE_ENV=production  USESSR=true node                       server.js",
     "webpack-dev": "      NODE_ENV=development             webpack --watch                     ",
     "webpack-build": "    NODE_ENV=production              webpack                             "

@@ -5,7 +5,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 // const InlineChunkHtmlPlugin = require('react-dev-utils/InlineChunkHtmlPlugin')
 // const { HtmlWebpackSkipAssetsPlugin } = require('html-webpack-skip-assets-plugin')
 
-console.log(`--- Webpack mode:${process.env.NODE_ENV} ---`)
+console.log(`--- Webpack mode:${process.env.NODE_ENV} ---\n`)
 
 const mode = process.env.NODE_ENV
 const config = {

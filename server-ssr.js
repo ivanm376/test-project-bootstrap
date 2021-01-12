@@ -6,34 +6,39 @@ import App from './src/components/App'
 import rootReducer from './src/reducers'
 import fs from 'fs'
 
-let html = fs.readFileSync('./src/index-template.html').toString()
-
-// Make joined string '<!DOCTYPE html><html lang="en"><head><meta charset="utf-8" /><meta ...'
-html = html
+const html = fs
+  .readFileSync('./src/index-template.html')
+  .toString()
   .split('\n')
   .map(i => i.trim())
-  .join('')
-
-// Insert window.USESSR and CSS:
+  .join('') // make joined string '<!DOCTYPE html><html lang="en"><head><meta charset=...'
 const css = fs.readFileSync('./dist/main.css').toString()
-html = html.replace('</head>', `<script>window.USESSR=true</script><style>${css}</style></head>`)
-
-// Insert prerendered App:
 const store = createStore(rootReducer)
 const appString = renderToString(
   <Provider store={store}>
     <App />
   </Provider>
 )
-html = html.replace('<div id="root"></div>', `<div id="root">${appString}</div>`)
+// const clientjs = fs.readFileSync('./dist/client-bundle.js').toString()  // inline client js
 
-// Insert client-bundle.js:
-html = html.replace('</html>', '<script src="/client-bundle.js"></script></html>')
+const chunksHead = html.split('</head>')
+const chunksRoot = chunksHead[1].split('<div id="root"></div>')
+const chunksFoot = chunksRoot[1].split('</html>')
+
+const resultHtml = [
+  chunksHead[0], // '<!DOCTYPE html><html lang="en"><head>...
+  `<script>window.USESSR=true</script><style>${css}</style></head>`, // insert window.USESSR and CSS
+  chunksRoot[0], // '<body><div id="innerBody">'
+  `<div id="root">${appString}</div>`, // insert prerendered App
+  chunksFoot[0], // '</div></body>'
+  '<script src="/client-bundle.js"></script></html>', // insert client-bundle.js
+  // `<script>${clientjs}</script></html>`, // inline client js
+].join('')
 
 module.exports = function (app) {
   app.get('/', (req, res) => {
     /* --renderToString-- */
-    return res.send(html)
+    return res.send(resultHtml)
 
     /* --renderToNodeStream-- */
     // const stream = renderToNodeStream(

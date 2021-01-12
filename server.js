@@ -24,7 +24,6 @@ const logger = winston.createLogger({
     }),
   ],
 })
-// if (process.env.NODE_ENV === 'development') { logger.add( /* transport */ ) }
 // logger.error('Test error message')
 // logger.warn('Test warn message')
 
@@ -75,7 +74,7 @@ app.use(express.static('dist'))
 app.use(express.static('public'))
 
 app.listen(process.env.PORT || 3000, () => {
-  logger.info(`APP listening ENV:${process.env.NODE_ENV} PORT:${process.env.PORT || 3000}`)
+  logger.info(`APP listening NODE_ENV:${process.env.NODE_ENV} PORT:${process.env.PORT || 3000}`)
 })
 
 process.on('uncaughtException', err => {
