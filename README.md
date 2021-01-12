@@ -5,12 +5,13 @@
 - Express
 - React/Redux
 - Server-side rendering
-- Tuned with [Lighthouse](https://developers.google.com/web/tools/lighthouse)
-- Bootstrap
+- Bootstrap 5
 - Sass
 - Winston
 - PWA
+- Tuned with [Lighthouse](https://developers.google.com/web/tools/lighthouse)
 - CSP (// TODO - CspHtmlWebpackPlugin)
+- Jest testing (// TODO)
 
 ### DOCKER-COMPOSE (\*under root user):
 
