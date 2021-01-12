@@ -1,16 +1,16 @@
 ## Test Project Bootstrap
 
 - Docker (two separate containers App and MongoDB)
-- Webpack
+- Webpack 5
 - Express
 - React/Redux
 - Server-side rendering
 - Tuned with [Lighthouse](https://developers.google.com/web/tools/lighthouse)
-- PWA
-- CSP (// TODO - CspHtmlWebpackPlugin)
 - Bootstrap
 - Sass
 - Winston
+- PWA
+- CSP (// TODO - CspHtmlWebpackPlugin)
 
 ### DOCKER-COMPOSE (\*under root user):
 
