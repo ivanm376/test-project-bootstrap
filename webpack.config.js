@@ -7,9 +7,8 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 console.log(`--- Webpack mode:${process.env.NODE_ENV} ---\n`)
 
-const mode = process.env.NODE_ENV
 const config = {
-  mode,
+  mode: process.env.NODE_ENV,
   entry: ['./src/style.sass', './src/client.js'],
   output: { filename: 'client-bundle.js' },
   performance: { maxEntrypointSize: 512000, maxAssetSize: 512000 }, // disable size limit warnings
@@ -45,9 +44,9 @@ const config = {
   },
 }
 
-if (mode === 'development') {
+if (process.env.NODE_ENV === 'development') {
   // config.module.rules[0].use.unshift('style-loader') // use style-loader for css
-} else if (mode === 'production') {
+} else if (process.env.NODE_ENV === 'production') {
   // config.plugins.push(new HtmlWebpackSkipAssetsPlugin({ skipAssets: ['main.css'] })) // inline js
   // config.plugins.push(new InlineChunkHtmlPlugin(HtmlWebpackPlugin, [/client-bundle/])) // inline js
   // config.plugins.push(new MiniCssExtractPlugin()) // inline css

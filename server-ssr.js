@@ -26,7 +26,7 @@ const chunksRoot = chunksHead[1].split('<div id="root"></div>')
 const chunksFoot = chunksRoot[1].split('</html>')
 
 const resultHtml = [
-  chunksHead[0], // '<!DOCTYPE html><html lang="en"><head>...
+  chunksHead[0], // '<!DOCTYPE html><html lang="en"><head>...'
   `<script>window.USESSR=true</script><style>${css}</style></head>`, // insert window.USESSR and CSS
   chunksRoot[0], // '<body><div id="innerBody">'
   `<div id="root">${appString}</div>`, // insert prerendered App
