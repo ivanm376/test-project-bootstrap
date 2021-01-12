@@ -1,4 +1,5 @@
 const path = require('path')
+const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 // const CspHtmlWebpackPlugin = require('csp-html-webpack-plugin')
@@ -51,14 +52,10 @@ const config = {
 if (mode === 'development') {
   config.module.rules[0].use.unshift('style-loader') // use style-loader for css
 } else if (mode === 'production') {
+  config.plugins.push(new InlineChunkHtmlPlugin(HtmlWebpackPlugin, [/client-bundle/])) // inline js
   config.plugins.push(new MiniCssExtractPlugin()) // inline css
   config.module.rules[0].use.unshift(MiniCssExtractPlugin.loader) // inline css
-  // config.plugins.push(new CspHtmlWebpackPlugin({ 'script-src': '', 'style-src': '' }))
-  config.plugins.push(new InlineChunkHtmlPlugin(HtmlWebpackPlugin, [/client-bundle/])) // inline js
-}
-
-if (process.env.USESSR) {
-  config.plugins = [] // remove HtmlWebpackPlugin and InlineChunkHtmlPlugin
+  // config.plugins.push(new CspHtmlWebpackPlugin({ 'script-src': '', 'style-src': '' })) // TODO
 }
 
 module.exports = config

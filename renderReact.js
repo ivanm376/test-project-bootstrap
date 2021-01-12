@@ -4,8 +4,10 @@ import { createStore } from 'redux'
 import { Provider } from 'react-redux'
 import App from './src/components/App'
 import rootReducer from './src/reducers'
+import fs from 'fs'
 
 const store = createStore(rootReducer)
+const css = fs.readFileSync('./dist/main.css')
 
 const htmlStart = `
   <!DOCTYPE html>
@@ -19,6 +21,8 @@ const htmlStart = `
       <link rel="manifest" href="/manifest.webmanifest" />
       <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
       <noscript>You Javascript is disabled! Site is unreachable!</noscript>
+      ${process.env.USESSR ? '<script>window.USESSR=true</script>' : ''}
+      <style>${css}</style>
     </head>
     <body>
       <div id="innerBody">

@@ -57,5 +57,5 @@ To start server in production mode (\*\*\*TODO pm2\*\*\*):
 
 ### Server-side rendering (non-available)
 
-> USESSR=true npm run server  
-> USESSR=true npm run build
+> npm run server-ssr
+> npm run build-ssr

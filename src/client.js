@@ -7,8 +7,13 @@ import rootReducer from './reducers'
 
 const store = createStore(rootReducer)
 
-render(
-  // hydrate( // SSR
+let renderingMethod = render
+if (window.USESSR) {
+  console.log(`INFO: USESSR flag is on, using hydrate method`)
+  renderingMethod = hydrate
+}
+
+renderingMethod(
   <Provider store={store}>
     <App />
   </Provider>,

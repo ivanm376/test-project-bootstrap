@@ -37,6 +37,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "server": "NODE_ENV=development PORT=3000 node --inspect=0.0.0.0 server.js",
     "server-brk": "NODE_ENV=development PORT=3000 node --inspect-brk=0.0.0.0 server.js",
+    "server-ssr": "NODE_ENV=development PORT=3000 USESSR=true node --inspect=0.0.0.0 server.js",
     "webpack": "NODE_ENV=development webpack --watch",
     "build": "NODE_ENV=production webpack",
     "production": "NODE_ENV=production PORT=3000 node server.js"
