@@ -10,13 +10,12 @@
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <noscript>You Javascript is disabled! Site is unreachable!</noscript>
     <!-- inline CSS from htmlWebpackPlugin: -->
-    <!-- File count: <%= JSON.stringify(htmlWebpackPlugin.files) %> -->
+    <!-- Files: <%= JSON.stringify(htmlWebpackPlugin.files) %> -->
     <style><%= htmlWebpackPlugin.files.css.map(i => compilation.assets[i.substr(htmlWebpackPlugin.files.publicPath.length)].source()).join('') %></style>
   </head>
   <body>
     <div id="innerBody">
       <div id="root"></div>
-      <div id="testcss"></div>
     </div>
   </body>
 </html>
