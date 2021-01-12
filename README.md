@@ -3,13 +3,14 @@
 - Docker (two separate containers App and MongoDB)
 - Webpack
 - Express
-- Winston
 - React/Redux
-- Sass
-- Bootstrap
+- Server-side rendering
 - Tuned with [Lighthouse](https://developers.google.com/web/tools/lighthouse)
 - PWA
 - CSP (// TODO - CspHtmlWebpackPlugin)
+- Sass
+- Winston
+- Bootstrap
 
 ### DOCKER-COMPOSE (\*under root user):
 
