@@ -1,5 +1,5 @@
 import React from 'react'
-import { renderToString, renderToNodeStream } from 'react-dom/server'
+import { renderToString /*, renderToNodeStream */ } from 'react-dom/server'
 import { createStore } from 'redux'
 import { Provider } from 'react-redux'
 import App from './src/components/App'
@@ -8,7 +8,7 @@ import fs from 'fs'
 
 let html = fs.readFileSync('./src/index-template.html').toString()
 
-// Make string '<!DOCTYPE html><html lang="en"><head><meta charset="utf-8" /><meta ...':
+// Make joined string '<!DOCTYPE html><html lang="en"><head><meta charset="utf-8" /><meta ...'
 html = html
   .split('\n')
   .map(i => i.trim())
@@ -16,7 +16,7 @@ html = html
 
 // Insert window.USESSR and CSS:
 const css = fs.readFileSync('./dist/main.css').toString()
-html = html.replace(/<\/head>/, `<script>window.USESSR=true</script><style>${css}</style></head>`)
+html = html.replace('</head>', `<script>window.USESSR=true</script><style>${css}</style></head>`)
 
 // Insert prerendered App:
 const store = createStore(rootReducer)
@@ -25,10 +25,10 @@ const appString = renderToString(
     <App />
   </Provider>
 )
-html = html.replace(/<div id="root"><\/div>/, `<div id="root">${appString}</div>`)
+html = html.replace('<div id="root"></div>', `<div id="root">${appString}</div>`)
 
 // Insert client-bundle.js:
-html = html.replace(/<\/html>/, `<script src="/client-bundle.js"></script></html>`)
+html = html.replace('</html>', '<script src="/client-bundle.js"></script></html>')
 
 module.exports = function (app) {
   app.get('/', (req, res) => {

@@ -1,4 +1,5 @@
 const winston = require('winston')
+const colorizer = winston.format.colorize()
 const logger = winston.createLogger({
   format: winston.format.combine(
     winston.format.timestamp(),
@@ -11,11 +12,7 @@ const logger = winston.createLogger({
   transports: [
     new winston.transports.File({ filename: 'error.log', level: 'error' }),
     new winston.transports.File({ filename: 'combined.log' }),
-  ],
-})
-if (process.env.NODE_ENV === 'development') {
-  const colorizer = winston.format.colorize()
-  logger.add(
+
     new winston.transports.Console({
       format: winston.format.combine(
         winston.format.timestamp({ format: 'YYYY-MM-DD HH:mm:ss' }),
@@ -24,9 +21,10 @@ if (process.env.NODE_ENV === 'development') {
           return colorizer.colorize(level, `${timestamp} ${level.toUpperCase()}: ${message}`)
         })
       ),
-    })
-  )
-}
+    }),
+  ],
+})
+// if (process.env.NODE_ENV === 'development') { logger.add( /* transport */ ) }
 // logger.error('Test error message')
 // logger.warn('Test warn message')
 
@@ -47,21 +45,22 @@ if (process.env.USESSR) {
   app.get('/', (req, res) => res.sendFile(__dirname + '/dist/index.html')) // default serve index.html
 }
 
+// const fs = require('fs')
+// const ytdl = require('ytdl-core') // mobile 800x480
 app.get('/kitties', (req, res) => {
   logger.info('kitties', req.url)
-  try {
-    // if (req.url.includes('%')) {
-    //   debugger;
-    //   ytdl(`http://www.youtube.com/watch?v=${req.url.split('%')[0].slice(1)}`, {
-    //     // quality: 'highest'
-    //     quality: 18, // second
-    //     //,quality: 'highestaudio',
-    //     //,filter: i => i.qualityLabel === '480p' && i.mimeType.slice(0, 10) === "video/webm"
-    //   }).pipe(fs.createWriteStream(`${req.url.split('%')[1]}.mp4`));
-    // }
-  } catch (err) {
-    debugger
-  }
+  // try {
+  //   if (req.url.includes('%')) {
+  //     ytdl(`http://www.youtube.com/watch?v=${req.url.split('%')[0].slice(1)}`, {
+  //       // quality: 'highest'
+  //       quality: 18, // second
+  //       //,quality: 'highestaudio',
+  //       //,filter: i => i.qualityLabel === '480p' && i.mimeType.slice(0, 10) === "video/webm"
+  //     }).pipe(fs.createWriteStream(`${req.url.split('%')[1]}.mp4`))
+  //   }
+  // } catch (err) {
+  //   logger.error(`ytdl_catch ${err}`)
+  // }
 
   const random = Math.random()
   const kitty = new Cat({ name: `Zildjian${random}` })
@@ -75,22 +74,11 @@ app.get('/kitties', (req, res) => {
 app.use(express.static('dist'))
 app.use(express.static('public'))
 
-app.listen(process.env.PORT, () => {
-  logger.info(`APP listening ENV:${process.env.NODE_ENV} PORT:${process.env.PORT}`)
+app.listen(process.env.PORT || 3000, () => {
+  logger.info(`APP listening ENV:${process.env.NODE_ENV} PORT:${process.env.PORT || 3000}`)
 })
 
-// const fs = require('fs')
-// const ytdl = require('ytdl-core') // mobile 800x480
-//
-// try {
-//   // const info = await ytdl.getBasicInfo(videoId);
-//   // console.log(info.formats.map(i => `${i.itag} ${i.width}x${i.height}`));
-//   ytdl(`http://www.youtube.com/watch?v=${process.argv[2]}`, {
-//     // quality: 'highest'
-//     quality: 18, // second
-//     //,quality: 'highestaudio',
-//     //,filter: i => i.qualityLabel === '480p' && i.mimeType.slice(0, 10) === "video/webm"
-//   }).pipe(fs.createWriteStream(`${process.argv[3]}.mp4`))
-// } catch (err) {
-//   logger.error(`ytdl_catch ${err}`)
-// }
+process.on('uncaughtException', err => {
+  logger.error(`server_uncaughtException ${err}`)
+  process.exit(1)
+})
