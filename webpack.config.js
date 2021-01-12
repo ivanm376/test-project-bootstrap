@@ -1,5 +1,7 @@
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+// const CspHtmlWebpackPlugin = require('csp-html-webpack-plugin')
 const InlineChunkHtmlPlugin = require('react-dev-utils/InlineChunkHtmlPlugin')
 
 console.log(`--- Webpack mode:${process.env.NODE_ENV} ---`)
@@ -9,13 +11,13 @@ const config = {
   mode,
   entry: ['./src/style.sass', './src/client.js'],
   output: { filename: 'client-bundle.js' },
-  plugins: [new HtmlWebpackPlugin({ template: './src/index-template.html' })],
+  plugins: [new HtmlWebpackPlugin({ template: './src/index-template.ejs' })],
   performance: { maxEntrypointSize: 512000, maxAssetSize: 512000 }, // disable size limit warnings
   module: {
     rules: [
       {
         test: /\.sass$/i,
-        use: ['style-loader', 'css-loader?url=false', 'sass-loader'],
+        use: ['css-loader?url=false', 'sass-loader'],
       },
       {
         test: /\.js$/,
@@ -40,22 +42,20 @@ const config = {
       },
     ],
   },
-  // optimization: {
-  //   splitChunks: {
-  //     chunks: 'async',
-  //     minChunks: 10,
-  //   },
-  // },
-  // resolve: { // react profiling https://gist.github.com/bvaughn/25e6233aeb1b4f0cdb8d8366e54a3977#webpack-4
-  //   alias: {
-  //     'react-dom$': 'react-dom/profiling',
-  //     'scheduler/tracing': 'scheduler/tracing-profiling',
-  //   },
-  // },
 }
 
-if (mode === 'production') {
-  config.plugins.push(new InlineChunkHtmlPlugin(HtmlWebpackPlugin, [/client-bundle/]))
+if (mode === 'development') {
+  config.module.rules[0].use.unshift('style-loader') // use style-loader for css
+} else if (mode === 'production') {
+  config.module.rules[0].use.unshift('style-loader') // use style-loader for css
+  config.plugins.push(new MiniCssExtractPlugin()) // inline css
+  config.module.rules[0].use.unshift(MiniCssExtractPlugin.loader) // inline css
+  // config.plugins.push(new CspHtmlWebpackPlugin({ 'script-src': '', 'style-src': '' }))
+  config.plugins.push(new InlineChunkHtmlPlugin(HtmlWebpackPlugin, [/client-bundle/])) // inline js
+}
+
+if (process.env.USESSR) {
+  config.plugins = [] // remove HtmlWebpackPlugin and InlineChunkHtmlPlugin
 }
 
 module.exports = config
