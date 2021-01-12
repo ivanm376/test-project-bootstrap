@@ -14,15 +14,12 @@ const config = {
   entry: ['./src/style.sass', './src/client.js'],
   output: { filename: 'client-bundle.js' },
   performance: { maxEntrypointSize: 512000, maxAssetSize: 512000 }, // disable size limit warnings
-  plugins: [
-    new HtmlWebpackPlugin({ template: './src/index-template.ejs' }),
-    new HtmlWebpackSkipAssetsPlugin({ skipAssets: ['main.css'] }),
-  ],
+  plugins: [new HtmlWebpackPlugin({ template: './src/index-template.ejs' }), new MiniCssExtractPlugin()],
   module: {
     rules: [
       {
         test: /\.sass$/i,
-        use: ['css-loader?url=false', 'sass-loader'],
+        use: [MiniCssExtractPlugin.loader, 'css-loader?url=false', 'sass-loader'],
       },
       {
         test: /\.js$/,
@@ -50,11 +47,12 @@ const config = {
 }
 
 if (mode === 'development') {
-  config.module.rules[0].use.unshift('style-loader') // use style-loader for css
+  // config.module.rules[0].use.unshift('style-loader') // use style-loader for css
 } else if (mode === 'production') {
-  config.plugins.push(new InlineChunkHtmlPlugin(HtmlWebpackPlugin, [/client-bundle/])) // inline js
-  config.plugins.push(new MiniCssExtractPlugin()) // inline css
-  config.module.rules[0].use.unshift(MiniCssExtractPlugin.loader) // inline css
+  config.plugins.push(new HtmlWebpackSkipAssetsPlugin({ skipAssets: ['main.css'] })) // inline js
+  // config.plugins.push(new InlineChunkHtmlPlugin(HtmlWebpackPlugin, [/client-bundle/])) // inline js
+  // config.plugins.push(new MiniCssExtractPlugin()) // inline css
+  // config.module.rules[0].use.unshift(MiniCssExtractPlugin.loader) // inline css
   // config.plugins.push(new CspHtmlWebpackPlugin({ 'script-src': '', 'style-src': '' })) // TODO
 }
 

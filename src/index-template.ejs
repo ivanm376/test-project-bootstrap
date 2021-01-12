@@ -11,7 +11,7 @@
     <noscript>You Javascript is disabled! Site is unreachable!</noscript>
     <!-- inline CSS from htmlWebpackPlugin: -->
     <!-- Files: <%= JSON.stringify(htmlWebpackPlugin.files) %> -->
-    <style><%= htmlWebpackPlugin.files.css.map(i => compilation.assets[i.substr(htmlWebpackPlugin.files.publicPath.length)].source()).join('') %></style>
+    <!-- <style><%= !!htmlWebpackPlugin.files.css.map(i => compilation.assets[i.substr(htmlWebpackPlugin.files.publicPath.length)].source()).join('') %></style> -->
   </head>
   <body>
     <div id="innerBody">

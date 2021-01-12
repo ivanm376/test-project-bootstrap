@@ -26,10 +26,22 @@ Open two terminals with
 
 > docker exec -it project1_webapp_container bash
 
+Install packages
+
+> npm install --also=dev
+
 Run, in each, separately server and webpack
 
-> npm run server  
-> npm run webpack
+> npm run server-dev  
+> npm run webpack-watch
+
+\*To run server with breakpoint on first line (--inspect-brk):
+
+> npm run server-brk
+
+\*To test server ssr in development mode:
+
+> npm run server-ssr
 
 ##### \*To login as root:
 
@@ -37,7 +49,7 @@ Run, in each, separately server and webpack
 
 ### BUILD PRODUCTION BUNDLE
 
-> npm run build
+> npm run webpack-build
 
 ### DEPLOYMENT TO PRODUCTION
 
@@ -47,7 +59,7 @@ To skip devDependencies installation:
 
 To start server in production mode (\*\*\*TODO pm2\*\*\*):
 
-> npm run production
+> npm run server-production
 
 ### Links
 

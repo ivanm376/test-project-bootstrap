@@ -41,10 +41,10 @@ app.use(compression())
 
 if (process.env.USESSR) {
   logger.info('USESSR flag is on, trying server-side rendering')
-  require('@babel/register')({ presets: ['@babel/preset-env', '@babel/preset-react'] }) // SSR
-  require('./renderReact')(app) // SSR
+  require('@babel/register')({ presets: ['@babel/preset-env', '@babel/preset-react'] })
+  require('./server-ssr')(app)
 } else {
-  app.get('/', (req, res) => res.sendFile(__dirname + '/dist/index.html')) // default '/'
+  app.get('/', (req, res) => res.sendFile(__dirname + '/dist/index.html')) // default serve index.html
 }
 
 app.get('/kitties', (req, res) => {
