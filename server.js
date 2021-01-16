@@ -3,16 +3,15 @@ const colorizer = winston.format.colorize()
 const logger = winston.createLogger({
   format: winston.format.combine(
     winston.format.timestamp(),
-    winston.format.json(),
     winston.format.printf(data => {
+      const { timestamp, level, message } = data
       // reorder attributes:
-      return JSON.stringify({ timestamp: data.timestamp, level: data.level, message: data.message })
+      return `{"timestamp":"${timestamp}","level":"${level}","message":"${message}"}`
     })
   ),
   transports: [
     new winston.transports.File({ filename: 'error.log', level: 'error' }),
     new winston.transports.File({ filename: 'combined.log' }),
-
     new winston.transports.Console({
       format: winston.format.combine(
         winston.format.timestamp({ format: 'YYYY-MM-DD HH:mm:ss' }),

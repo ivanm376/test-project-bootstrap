@@ -35,7 +35,7 @@ const resultHtml = [
   // `<script>${clientjs}</script></html>`, // inline client js
 ].join('')
 
-module.exports = function (app) {
+module.exports = app => {
   app.get('/', (req, res) => {
     /* --renderToString-- */
     return res.send(resultHtml)

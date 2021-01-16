@@ -1,9 +1,9 @@
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
-// const CspHtmlWebpackPlugin = require('csp-html-webpack-plugin')
-// const InlineChunkHtmlPlugin = require('react-dev-utils/InlineChunkHtmlPlugin')
 // const { HtmlWebpackSkipAssetsPlugin } = require('html-webpack-skip-assets-plugin')
+// const InlineChunkHtmlPlugin = require('react-dev-utils/InlineChunkHtmlPlugin')
+// const CspHtmlWebpackPlugin = require('csp-html-webpack-plugin')
 
 console.log(`--- Webpack mode:${process.env.NODE_ENV} ---\n`)
 
@@ -49,8 +49,6 @@ if (process.env.NODE_ENV === 'development') {
 } else if (process.env.NODE_ENV === 'production') {
   // config.plugins.push(new HtmlWebpackSkipAssetsPlugin({ skipAssets: ['main.css'] })) // inline js
   // config.plugins.push(new InlineChunkHtmlPlugin(HtmlWebpackPlugin, [/client-bundle/])) // inline js
-  // config.plugins.push(new MiniCssExtractPlugin()) // inline css
-  // config.module.rules[0].use.unshift(MiniCssExtractPlugin.loader) // inline css
   // config.plugins.push(new CspHtmlWebpackPlugin({ 'script-src': '', 'style-src': '' })) // TODO
 }
 
