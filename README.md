@@ -40,21 +40,25 @@ Install packages
 Run in each terminal, separately, server and webpack
 
 > npm run server-dev  
-> npm run webpack-watch
-
-\*To run server with breakpoint on first line (--inspect-brk):
-
-> npm run server-brk
+> npm run webpack-dev
 
 \*To test server ssr in development mode:
 
 > npm run server-ssr
 
+\*To run server with breakpoint on first line (--inspect-brk) - add "-brk" postfix:
+
+> npm run server-brk
+
+or
+
+> npm run server-ssr-brk
+
 ##### \*To login as root:
 
 > docker exec -u root -it project1_webapp_container bash
 
-### BUILD PRODUCTION BUNDLE
+### BUILD PRODUCTION CLIENT BUNDLE
 
 > npm run webpack-build
 
