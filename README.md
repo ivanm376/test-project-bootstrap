@@ -4,7 +4,7 @@
 - Webpack 5
 - Express
 - React/Redux
-- Server-side rendering
+- Server-side rendering (SSR)
 - Bootstrap 5
 - Sass
 - Winston

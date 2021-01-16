@@ -48,6 +48,8 @@ if (process.env.USESSR) {
 app.get('/kitties', (req, res) => {
   logger.info('kitties', req.url)
   // try {
+  //   // const info = await ytdl.getBasicInfo(videoId);
+  //   // console.log(info.formats.map(i => `${i.itag} ${i.width}x${i.height}`));
   //   if (req.url.includes('%')) {
   //     ytdl(`http://www.youtube.com/watch?v=${req.url.split('%')[0].slice(1)}`, {
   //       // quality: 'highest'
