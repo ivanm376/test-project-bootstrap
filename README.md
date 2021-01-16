@@ -13,6 +13,8 @@
 - CSP (// TODO - CspHtmlWebpackPlugin)
 - Jest testing (// TODO)
 
+![Lighthouse](lighthouse.png)
+
 ### DOCKER-COMPOSE (\*under root user):
 
 > docker-compose up -d  
