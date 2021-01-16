@@ -13,7 +13,10 @@
 - CSP (// TODO - CspHtmlWebpackPlugin)
 - Jest testing (// TODO)
 
+&nbsp;<p align="center"><kbd>
 ![Lighthouse](lighthouse.png)
+</kbd></p>
+&nbsp;
 
 ### DOCKER-COMPOSE (\*under root user):
 
