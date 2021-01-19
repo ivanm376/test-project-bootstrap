@@ -2,11 +2,10 @@ const winston = require('winston')
 const colorizer = winston.format.colorize()
 const logger = winston.createLogger({
   format: winston.format.combine(
-    winston.format.timestamp(),
+    winston.format.timestamp({ format: 'YYYY-MM-DD HH:mm:ss' }),
     winston.format.printf(data => {
       const { timestamp, level, message } = data
-      // reorder attributes:
-      return `{"timestamp":"${timestamp}","level":"${level}","message":"${message}"}`
+      return `${timestamp} ${level.toUpperCase()}: ${message}`
     })
   ),
   transports: [
@@ -14,7 +13,6 @@ const logger = winston.createLogger({
     new winston.transports.File({ filename: 'combined.log' }),
     new winston.transports.Console({
       format: winston.format.combine(
-        winston.format.timestamp({ format: 'YYYY-MM-DD HH:mm:ss' }),
         winston.format.printf(data => {
           const { timestamp, level, message } = data
           return colorizer.colorize(level, `${timestamp} ${level.toUpperCase()}: ${message}`)
@@ -45,6 +43,7 @@ if (process.env.USESSR) {
 
 // const fs = require('fs')
 // const ytdl = require('ytdl-core') // mobile 800x480
+// ytdl(`http://www.youtube.com/watch?v=ID`, { quality: 18 }).pipe(fs.createWriteStream(`v.mp4`))
 app.get('/kitties', (req, res) => {
   logger.info('kitties', req.url)
   // try {
