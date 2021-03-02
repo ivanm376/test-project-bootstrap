@@ -1,5 +1,6 @@
 ## Test Project Bootstrap
 
+Tech stack:
 - Docker (two separate containers App and MongoDB)
 - Webpack 5
 - Express
