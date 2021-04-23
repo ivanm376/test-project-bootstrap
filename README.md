@@ -1,14 +1,15 @@
 ## Test Project Bootstrap
 
 Tech stack:
+
 - Docker (two separate containers App and MongoDB)
 - Webpack 5
 - Express
-- React/Redux
+- React Hooks/Redux
 - Server-side rendering (SSR)
 - Bootstrap 5
 - Sass
-- Winston
+- Winston logger
 - PWA
 - Tuned with [Lighthouse](https://developers.google.com/web/tools/lighthouse)
 - CSP (// TODO - CspHtmlWebpackPlugin)
@@ -42,6 +43,8 @@ Run in each terminal, separately, server and webpack
 
 > npm run server-dev  
 > npm run webpack-dev
+
+Open https://localhost:3030/
 
 \*To test server ssr in development mode:
 

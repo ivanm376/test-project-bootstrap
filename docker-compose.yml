@@ -9,9 +9,9 @@ services:
       - '3030:3000'
       - '9229:9229'
     volumes:
-      - /project1:/project1
+      - /test-project-bootstrap:/test-project-bootstrap
     user: usernew
-    working_dir: /project1
+    working_dir: /test-project-bootstrap
     links:
       - mongodb
 
