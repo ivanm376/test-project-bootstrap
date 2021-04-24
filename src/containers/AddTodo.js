@@ -1,8 +1,9 @@
 import React from 'react'
-import { connect } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { addTodo } from '../actions'
 
-const AddTodo = ({ dispatch }) => {
+const AddTodo = () => {
+  const dispatch = useDispatch()
   let input
 
   return (
@@ -33,8 +34,11 @@ const AddTodo = ({ dispatch }) => {
           </div>
         </div>
       </form>
+      <button type="submit" onClick={e => dispatch({ type: 'INCREMENT_COUNT' })} className="btn btn-success">
+        test
+      </button>
     </div>
   )
 }
 
-export default connect()(AddTodo)
+export default AddTodo

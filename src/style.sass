@@ -16,11 +16,19 @@ body
   // 2x2 pixel background:
   // background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAIAAAACCAYAAABytg0kAAAAFElEQVQYV2NkYGD4z8DAwMjIAAUADikBA/gvnngAAAAASUVORK5CYII=) repeat 
   // 3x3 pixel background:
-  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAMAAAADCAYAAABWKLW/AAAAF0lEQVQYV2NkYGD4z8DAwMgAI0AMDA4AI3EBBMY7CTgAAAAASUVORK5CYII=) repeat
+  // background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAMAAAADCAYAAABWKLW/AAAAF0lEQVQYV2NkYGD4z8DAwMgAI0AMDA4AI3EBBMY7CTgAAAAASUVORK5CYII=) repeat
 
 #root
   padding: 30px
   border-radius: 15px
   min-height: 300px
   backdrop-filter: blur(6px)
+  border: 1px solid gray
   // margin: $margin/2
+
+
+#innerBody ul > li
+  cursor: pointer
+
+#innerBody ul > li:hover
+  background: #ffffff26
