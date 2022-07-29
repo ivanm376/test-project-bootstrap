@@ -16,7 +16,7 @@ Tech stack:
 - Jest testing (// TODO)
 
 &nbsp;<p align="center"><kbd>
-![Lighthouse](test-project-bootstrap/blob/raw?file=lighthouse.png)
+![Lighthouse](https://raw.githubusercontent.com/ivanm376/test-project-bootstrap/main/lighthouse.png)
 </kbd></p>
 &nbsp;
 
@@ -49,7 +49,7 @@ Run in each terminal, separately, server and webpack
 
 Open https://localhost:3000/
 
-\*To test server ssr in development mode:
+##### \*To test server ssr in development mode:
 
 > npm run server-dev-ssr
 
