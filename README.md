@@ -16,7 +16,7 @@ Tech stack:
 - Jest testing (// TODO)
 
 &nbsp;<p align="center"><kbd>
-![Lighthouse](lighthouse.png)
+![Lighthouse](test-project-bootstrap/blob/raw?file=lighthouse.png)
 </kbd></p>
 &nbsp;
 
@@ -27,7 +27,10 @@ Tech stack:
 
 ### LINUX TIP
 
-Check you have enough watchers - https://webpack.js.org/configuration/watch/#not-enough-watchers.
+Check you have enough watchers - https://webpack.js.org/configuration/watch/#not-enough-watchers:
+
+> cat /proc/sys/fs/inotify/max_user_watches  
+> echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p
 
 ### DEVELOPMENT MODE
 
@@ -44,19 +47,11 @@ Run in each terminal, separately, server and webpack
 > npm run server-dev  
 > npm run webpack-dev
 
-Open https://localhost:3030/
+Open https://localhost:3000/
 
 \*To test server ssr in development mode:
 
-> npm run server-ssr
-
-\*To run server with breakpoint on first line (--inspect-brk) - add "-brk" postfix:
-
-> npm run server-brk
-
-or
-
-> npm run server-ssr-brk
+> npm run server-dev-ssr
 
 ##### \*To login as root:
 
